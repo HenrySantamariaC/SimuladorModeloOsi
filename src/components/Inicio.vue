@@ -193,7 +193,7 @@ import {
 export default {
     data() {
         return{
-            getFisica:'',
+            aux:'',
             msgOrigen: '',
             msgDestino: '',
             consola: '',
@@ -230,27 +230,28 @@ export default {
             this.msgDestino = ''
         },
         capaAplicacion() {
-            this.consola = this.ultimoMensaje
+            this.consola ='AH _' + this.ultimoMensaje 
         },
         capaPresentación() {
             this.asciiText = text_Ascii(this.ultimoMensaje)
-            this.consola = this.asciiText
+            this.consola ='PH-AH _' + this.asciiText
         },
         capaSesion() {
-            this.consola = this.asciiText
+            this.consola ='SH-PH-AH _' + this.asciiText
         },
         capaTransporte() {
-            this.consola = getTransporte(this.asciiText)
+            this.consola ='TH-SH-PH-AH _' + getTransporte(this.asciiText)
         },
         capaRed() {
-            this.consola = getRed(this.asciiText, this.usuarioOrigen.ip, this.usuarioDestino.ip)
+            this.consola ='RH-TH-SH-PH-AH _' + getRed(this.asciiText, this.usuarioOrigen.ip, this.usuarioDestino.ip)
         },
         capaEnlace() {
-            this.consola = getEnlace(this.asciiText, this.usuarioOrigen.ip, this.usuarioDestino.ip, this.usuarioOrigen.mac, this.usuarioDestino.mac)
-            this.getFisica=this.consola
+            this.aux = getEnlace(this.asciiText, this.usuarioOrigen.ip, this.usuarioDestino.ip, this.usuarioOrigen.mac, this.usuarioDestino.mac)
+            this.consola='EH-RF-TH-SH-PH-AH _' + this.aux
         },
         capaFisica() {
-            this.consola = text_Binario(this.getFisica)
+            const auxh = 'FH EH RF TH SH PH AH';  
+            this.consola =text_Binario(auxh) +text_Binario(this.aux)
         }
     }
 }
