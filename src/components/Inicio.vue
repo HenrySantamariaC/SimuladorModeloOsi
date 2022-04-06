@@ -184,15 +184,16 @@
 </template>
 <script>
 import {
-    toAscii,
     getTransporte,
     getRed,
     getEnlace,
-    getFisica
+    text_Ascii,
+    text_Binario
 } from '../js/Funciones.js'
 export default {
     data() {
         return{
+            getFisica:'',
             msgOrigen: '',
             msgDestino: '',
             consola: '',
@@ -229,11 +230,11 @@ export default {
             this.msgDestino = ''
         },
         capaAplicacion() {
-            this.consola = 'AH ~' + this.ultimoMensaje
+            this.consola = this.ultimoMensaje
         },
         capaPresentación() {
-            this.consola = toAscii(this.ultimoMensaje)
-            this.asciiText = this.consola
+            this.asciiText = text_Ascii(this.ultimoMensaje)
+            this.consola = this.asciiText
         },
         capaSesion() {
             this.consola = this.asciiText
@@ -246,9 +247,10 @@ export default {
         },
         capaEnlace() {
             this.consola = getEnlace(this.asciiText, this.usuarioOrigen.ip, this.usuarioDestino.ip, this.usuarioOrigen.mac, this.usuarioDestino.mac)
+            this.getFisica=this.consola
         },
         capaFisica() {
-            this.consola = getFisica(this.asciiText, this.usuarioOrigen.ip, this.usuarioDestino.ip, this.usuarioOrigen.mac, this.usuarioDestino.mac)
+            this.consola = text_Binario(this.getFisica)
         }
     }
 }

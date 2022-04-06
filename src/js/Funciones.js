@@ -1,6 +1,6 @@
 //aplicacion
 // presentacion
-function toAscii(cadena){
+function text_Ascii(cadena){
     let strAscii='';
     let arr = cadena.split('');  
     arr.forEach(item => {
@@ -37,7 +37,7 @@ function getRed(asciitxt, ip_origen, ip_destino){
     let red='';
     let arr = asciitxt.split(' ');
     arr.forEach(item=>{
-        let pos = item.indexOf(item);
+        let pos = arr.indexOf(item);
         red+=ip_origen;
         red+=' ';
         red+=ip_destino;
@@ -46,7 +46,7 @@ function getRed(asciitxt, ip_origen, ip_destino){
         pos++;
         red+= pos;
         red+=' ';
-        
+
         pos--;
         red+=item;
         red+=' ~ ';
@@ -62,7 +62,7 @@ function getEnlace(asciitxt, ip_origen, ip_destino, mac_origen, mac_destino){
     let arr = asciitxt.split(' ');
 
     arr.forEach(item=>{
-
+        let pos=arr.indexOf(item);
         enlace+=mac_origen;
 		enlace+=' ';
         enlace+=ip_origen;
@@ -72,12 +72,12 @@ function getEnlace(asciitxt, ip_origen, ip_destino, mac_origen, mac_destino){
 		enlace+=ip_destino;
 		enlace+=' ';
 
-		index++;
-		enlace+= (index);
+		pos++;
+		enlace+=pos;
 		enlace+=' ';
-		enlace+=' ';
-		index--;
-		enlace+=arr[index];
+
+		pos--;
+		enlace+=item;
 		enlace+=' ~ ';
 
     });
@@ -88,8 +88,6 @@ function getEnlace(asciitxt, ip_origen, ip_destino, mac_origen, mac_destino){
 
 
 //fisica
-
-
 
 function text_Binario(texto){
     texto = unescape( texto );
@@ -104,31 +102,10 @@ function text_Binario(texto){
     return valorBinario;
 }
 
-function getFisica(asciitxt, ip_origen, ip_destino, mac_origen, mac_destino){
-    let arr = asciitxt.split(' ');
-    let cadenaF='';
-    for (let index in arr) {    
-        cadenaF+='I';
-		cadenaF+=mac_origen;
-		cadenaF+=mac_destino;
-		cadenaF+='num';
-		cadenaF+=ip_origen;
-		cadenaF+=ip_destino;
-		index++;
-		cadenaF+= (index);
-		index--;
-		cadenaF+=arr[index];
-		cadenaF+='FCS';
-		cadenaF+='F';
-    }
-    cadenaF=text_Binario(cadenaF);
-    return cadenaF;
-}
-
 export {
-    toAscii,
+    text_Ascii,
     getTransporte,
     getRed,
     getEnlace,
-    getFisica
+    text_Binario
 }
