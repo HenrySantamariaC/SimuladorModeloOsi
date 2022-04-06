@@ -183,13 +183,11 @@
     </div>
 </template>
 <script>
-import {
-    getTransporte,
-    getRed,
-    getEnlace,
-    text_Ascii,
-    text_Binario
-} from '../js/Funciones.js'
+import { text_Ascii } from '../js/capa-presentacion.js'
+import { enlace } from '../js/capa-enlace.js'
+import { transporte } from '../js/capa-transporte.js'
+import { red } from '../js/capa-red.js'
+import {text_Binario} from '../js/capa-fisica'
 export default {
     data() {
         return{
@@ -240,13 +238,13 @@ export default {
             this.consola ='SH-PH-AH _' + this.asciiText
         },
         capaTransporte() {
-            this.consola ='TH-SH-PH-AH _' + getTransporte(this.asciiText)
+            this.consola ='TH-SH-PH-AH _' + transporte(this.asciiText)
         },
         capaRed() {
-            this.consola ='RH-TH-SH-PH-AH _' + getRed(this.asciiText, this.usuarioOrigen.ip, this.usuarioDestino.ip)
+            this.consola ='RH-TH-SH-PH-AH _' + red(this.asciiText, this.usuarioOrigen.ip, this.usuarioDestino.ip)
         },
         capaEnlace() {
-            this.aux = getEnlace(this.asciiText, this.usuarioOrigen.ip, this.usuarioDestino.ip, this.usuarioOrigen.mac, this.usuarioDestino.mac)
+            this.aux = enlace(this.asciiText, this.usuarioOrigen.ip, this.usuarioDestino.ip, this.usuarioOrigen.mac, this.usuarioDestino.mac)
             this.consola='EH-RF-TH-SH-PH-AH _' + this.aux
         },
         capaFisica() {
