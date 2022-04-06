@@ -185,8 +185,6 @@
 <script>
 import {
     toAscii,
-    crearSesion,
-    getSesion,
     getTransporte,
     getRed,
     getEnlace,
@@ -200,7 +198,6 @@ export default {
             consola: '',
             asciiText: '',
             ultimoMensaje: 'Curso de Teleprocesos',
-            objSesion: {},
             usuarioOrigen: {
                 id: 1,
                 ip: '192.168.1.1',
@@ -232,27 +229,26 @@ export default {
             this.msgDestino = ''
         },
         capaAplicacion() {
-            this.consola = this.ultimoMensaje
+            this.consola = 'AH ~' + this.ultimoMensaje
         },
         capaPresentación() {
             this.consola = toAscii(this.ultimoMensaje)
             this.asciiText = this.consola
         },
         capaSesion() {
-            this.objSesion = crearSesion(this.asciiText)
-            this.consola = getSesion(this.objSesion)
+            this.consola = this.asciiText
         },
         capaTransporte() {
-            this.consola = getTransporte(this.objSesion)
+            this.consola = getTransporte(this.asciiText)
         },
         capaRed() {
-            this.consola = getRed(this.objSesion, this.usuarioOrigen.ip, this.usuarioDestino.ip)
+            this.consola = getRed(this.asciiText, this.usuarioOrigen.ip, this.usuarioDestino.ip)
         },
         capaEnlace() {
-            this.consola = getEnlace(this.objSesion, this.usuarioOrigen.ip, this.usuarioDestino.ip, this.usuarioOrigen.mac, this.usuarioDestino.mac)
+            this.consola = getEnlace(this.asciiText, this.usuarioOrigen.ip, this.usuarioDestino.ip, this.usuarioOrigen.mac, this.usuarioDestino.mac)
         },
         capaFisica() {
-            this.consola = getFisica(this.objSesion, this.usuarioOrigen.ip, this.usuarioDestino.ip, this.usuarioOrigen.mac, this.usuarioDestino.mac)
+            this.consola = getFisica(this.asciiText, this.usuarioOrigen.ip, this.usuarioDestino.ip, this.usuarioOrigen.mac, this.usuarioDestino.mac)
         }
     }
 }

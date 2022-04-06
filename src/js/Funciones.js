@@ -1,120 +1,89 @@
+//aplicacion
 // presentacion
-
 function toAscii(cadena){
-    let cadenaAscii='';
-    let arreglo = cadena.split('');
-    for (const item of arreglo) {
-        cadenaAscii+=item.charCodeAt(0);
-        cadenaAscii+=' ';
-    }
-    cadenaAscii=cadenaAscii.trimEnd();
-    return cadenaAscii;
-}
+    let strAscii='';
+    let arr = cadena.split('');  
+    arr.forEach(item => {
+      //  let i=arreglo.indexOf(item);
+        strAscii+=item.charCodeAt(0);
+        strAscii+=' ';
+      //  console.log(i);
 
+    });
+    strAscii=strAscii.trimEnd();
+    return strAscii;
+}
 //sesion
-function crearSesion(codigo_ascii){
-    let objetoSesion = {
-        ascii: codigo_ascii,
-        head: 'S1'
-    }
-    return objetoSesion;
-}
-function getSesion(objeto_sesion){
-    return objeto_sesion.head+' '+objeto_sesion.ascii;
-}
-
 //transporte
 
-function getTransporte(objeto_sesion){
-    let codigo_ascii=objeto_sesion.ascii;
-    let h = objeto_sesion.head;
-
-    let arreglo_ascii = codigo_ascii.split(' ');
-    let cadenaT='';
-    for (let index in arreglo_ascii) {    
-        index++;
-        cadenaT+= (index);
-        cadenaT+=' ';
-        cadenaT+=h;
-        cadenaT+=' ';
-        index--;
-        cadenaT+=arreglo_ascii[index];
-        cadenaT+=' ~ ';
-    }
-    var n=cadenaT.lastIndexOf(' ~ ');   //encuentra la posición del " - "
-    cadenaT=cadenaT.substring(n,-1);    //elimina el caracter en esa posición
-    return cadenaT;
+function getTransporte(asciitxt){
+    let transporte='';
+    let arr = asciitxt.split(' ');
+    arr.forEach(item=>{
+    let pos = arr.indexOf(item);
+        pos++;
+        transporte+=pos;
+        transporte+=' ';
+        pos--;
+        transporte+=item;
+        transporte+=' ~ ';
+    });
+    var n=transporte.lastIndexOf(' ~ ');   //encuentra la posición del " - "
+    transporte=transporte.substring(n,-1);    //elimina el caracter en esa posición
+    return transporte;
 }
-
 //Red
+function getRed(asciitxt, ip_origen, ip_destino){
+    let red='';
+    let arr = asciitxt.split(' ');
+    arr.forEach(item=>{
+        let pos = item.indexOf(item);
+        red+=ip_origen;
+        red+=' ';
+        red+=ip_destino;
+        red+=' '; 
 
+        pos++;
+        red+= pos;
+        red+=' ';
+        
+        pos--;
+        red+=item;
+        red+=' ~ ';
+    });
 
-function getRed(objeto_sesion, ip_origen, ip_destino){
-    let codigo_ascii=objeto_sesion.ascii;
-    let h = objeto_sesion.head;
-
-    //
-    let arreglo_ascii = codigo_ascii.split(' ');
-    let cadenaR='';
-    for (let index in arreglo_ascii) {    
-        cadenaR+=ip_origen;
-        cadenaR+=' ';
-        cadenaR+=ip_destino;
-        cadenaR+=' ';        
-        index++;
-        cadenaR+= (index);
-        cadenaR+=' ';
-        cadenaR+=h;
-        cadenaR+=' ';
-        index--;
-        cadenaR+=arreglo_ascii[index];
-        cadenaR+=' ~ ';
-    }
-    var n=cadenaR.lastIndexOf(' ~ ');
-    cadenaR=cadenaR.substring(n,-1);
-    return cadenaR;
+    var n=red.lastIndexOf(' ~ ');
+    red=red.substring(n,-1);
+    return red;
 }
 //enlace de datos
+function getEnlace(asciitxt, ip_origen, ip_destino, mac_origen, mac_destino){
+    let enlace='';
+    let arr = asciitxt.split(' ');
 
+    arr.forEach(item=>{
 
+        enlace+=mac_origen;
+		enlace+=' ';
+        enlace+=ip_origen;
+		enlace+=' ';
+		enlace+=mac_destino;
+		enlace+=' ';
+		enlace+=ip_destino;
+		enlace+=' ';
 
-function getEnlace(objeto_sesion, ip_origen, ip_destino, mac_origen, mac_destino){
-    let codigo_ascii=objeto_sesion.ascii;
-    let h = objeto_sesion.head;
-
-    let arreglo_ascii = codigo_ascii.split(' ');
-    let cadenaE='';
-    for (let index in arreglo_ascii) {    
-        cadenaE+='I';
-		cadenaE+=' ';
-		cadenaE+=mac_origen;
-		cadenaE+=' ';
-		cadenaE+=mac_destino;
-		cadenaE+=' ';
-
-		let longitud=88;
-		longitud+=arreglo_ascii[index].length*8;
-
-		cadenaE+=longitud;
-		cadenaE+=' ';
-		cadenaE+=ip_origen;
-		cadenaE+=' ';
-		cadenaE+=ip_destino;
-		cadenaE+=' ';
 		index++;
-		cadenaE+= (index);
-		cadenaE+=' ';
-		cadenaE+=h;
-		cadenaE+=' ';
+		enlace+= (index);
+		enlace+=' ';
+		enlace+=' ';
 		index--;
-		cadenaE+=arreglo_ascii[index];
-		cadenaE+=' ';
-		cadenaE+='FCS';
-		cadenaE+=' ~ ';
-    }
-    var n=cadenaE.lastIndexOf(' ~ ');
-    cadenaE=cadenaE.substring(n,-1);
-    return cadenaE;
+		enlace+=arr[index];
+		enlace+=' ~ ';
+
+    });
+    var n=enlace.lastIndexOf(' ~ ');
+    enlace=enlace.substring(n,-1);
+    return enlace;
 }
 
 
@@ -135,14 +104,10 @@ function text_Binario(texto){
     return valorBinario;
 }
 
-function getFisica(objeto_sesion, ip_origen, ip_destino, mac_origen, mac_destino){
-    let codigo_ascii=objeto_sesion.ascii;
-    let h = objeto_sesion.head;
-
-    //
-    let arreglo_ascii = codigo_ascii.split(' ');
+function getFisica(asciitxt, ip_origen, ip_destino, mac_origen, mac_destino){
+    let arr = asciitxt.split(' ');
     let cadenaF='';
-    for (let index in arreglo_ascii) {    
+    for (let index in arr) {    
         cadenaF+='I';
 		cadenaF+=mac_origen;
 		cadenaF+=mac_destino;
@@ -151,9 +116,8 @@ function getFisica(objeto_sesion, ip_origen, ip_destino, mac_origen, mac_destino
 		cadenaF+=ip_destino;
 		index++;
 		cadenaF+= (index);
-		cadenaF+=h;
 		index--;
-		cadenaF+=arreglo_ascii[index];
+		cadenaF+=arr[index];
 		cadenaF+='FCS';
 		cadenaF+='F';
     }
@@ -163,8 +127,6 @@ function getFisica(objeto_sesion, ip_origen, ip_destino, mac_origen, mac_destino
 
 export {
     toAscii,
-    crearSesion,
-    getSesion,
     getTransporte,
     getRed,
     getEnlace,
