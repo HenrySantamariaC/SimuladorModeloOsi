@@ -69,76 +69,114 @@
             </div>
             <div class="row">
                 <div class="col-4">
-                    <div class="row mx-3">
-                        <div class="col-12 top-bar-chat p-3">
-                            <p class="text-white fs-5 m-0">Ana Valera</p>
-                        </div>
-                        <div class="col-12 bg-chat size-chat">
-                            <div v-for="(item,i) in mensajes" :key="i">
-                                <div class="row m-2" v-if="usuarioOrigen.id == item.idUsuario">
-                                    <div class="col-3"></div>
-                                    <div class="col-9 bg-send-message py-1 px-3 rounded-3">
-                                        <p class="text-white text-end m-0">{{item.mensaje}}</p>
+                    <div class="size-360x640 phone mx-auto">
+                        <div class="row m-0">
+                            <div class="col-12 top-bar-chat py-2 px-0">
+                                <div class="row m-0">
+                                    <div class="col-2 p-0">
+                                        <img src="@/assets/leftArrow.png" width="20px" height="20px" class="">
                                     </div>
-                                </div>
-                                <div class="row m-2" v-else>
-                                    <div class="col-9 bg-recived-message py-1 px-3 rounded-3">
-                                        <p class="text-white text-start m-0">{{item.mensaje}}</p>
+                                    <div class="col-2 p-0">
+                                        <img src="@/assets/photoGirl.jpg" width="32px" height="32px" class="rounded rounded-circle">
                                     </div>
-                                    <div class="col-3"></div>
+                                    <div class="col-6 p-0">
+                                        <p class="text-white text-start fs-6 m-0 my-1">Ana Valera</p>
+                                    </div>
+                                    <div class="col-2 p-0">
+                                        <img src="@/assets/ellipsis.png" width="20px" height="20px" class="">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-12 bg-chat">
-                            <div class="row">
-                                <div class="col-10">
-                                    <div class="my-2 mx-auto">
-                                        <input type="text" class="form-control form-control-sm" id="inputMessage" placeholder=" Escriba mensaje..." v-model="msgOrigen"
-                                        v-on:keyup.enter="sendMessage(msgOrigen,usuarioOrigen.id)">
+                            <div class="col-12 bg-chat size-chat">
+                                <div v-for="(item,i) in mensajes" :key="i">
+                                    <div class="row m-2" v-if="usuarioOrigen.id == item.idUsuario">
+                                        <div class="col-3"></div>
+                                        <div class="col-9 p-0 d-flex justify-content-end">
+                                            <div class="bg-send-message py-1 px-2 rounded-3">
+                                                <p class="text-white text-end m-0 mw-100 text-wrap fs-7">{{item.mensaje}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row m-2" v-else>
+                                        <div class="col-9 p-0 d-flex">
+                                            <div class="bg-recived-message py-1 px-2 rounded-3">
+                                                <p class="text-white text-start mb-0 w-auto fs-7">{{item.mensaje}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-3"></div>
                                     </div>
                                 </div>
-                                <div class="col-2 py-1 px-0">
-                                    <button class="btn rounded-circle btn-send-message p-0" @click="sendMessage(msgOrigen,usuarioOrigen.id)">
-                                        <img src="@/assets/SendMessage.svg" width="20px" height="20px" class="">
-                                    </button>
+                            </div>
+                            <div class="col-12 bg-chat">
+                                <div class="row">
+                                    <div class="col-10">
+                                        <div class="my-2 mx-auto">
+                                            <input type="text" class="form-control form-control-sm" id="inputMessage" placeholder=" Escriba mensaje..." v-model="msgOrigen"
+                                            v-on:keyup.enter="sendMessage(msgOrigen,usuarioOrigen.id)">
+                                        </div>
+                                    </div>
+                                    <div class="col-2 py-1 px-0">
+                                        <button class="btn rounded-circle btn-send-message p-0" @click="sendMessage(msgOrigen,usuarioOrigen.id)">
+                                            <img src="@/assets/SendMessage.svg" width="20px" height="20px" class="">
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="row mx-3">
-                        <div class="col-12 top-bar-chat p-3">
-                            <p class="text-white fs-5 m-0">Robert Kwon</p>
-                        </div>
-                        <div class="col-12 bg-chat size-chat">
-                            <div v-for="(item,i) in mensajes" :key="i">
-                                <div class="row m-2" v-if="usuarioDestino.id == item.idUsuario">
-                                    <div class="col-3"></div>
-                                    <div class="col-9 bg-send-message py-1 px-3 rounded-3">
-                                        <p class="text-white text-end m-0">{{item.mensaje}}</p>
+                    <div class="size-360x640 phone mx-auto">
+                        <div class="row m-0">
+                            <div class="col-12 top-bar-chat py-2 px-0">
+                                <div class="row m-0">
+                                    <div class="col-2 p-0">
+                                        <img src="@/assets/leftArrow.png" width="20px" height="20px" class="">
                                     </div>
-                                </div>
-                                <div class="row m-2" v-else>
-                                    <div class="col-9 bg-recived-message py-1 px-3 rounded-3">
-                                        <p class="text-white text-start m-0">{{item.mensaje}}</p>
+                                    <div class="col-2 p-0">
+                                        <img src="@/assets/photoBoy.jpg" width="32px" height="32px" class="rounded rounded-circle">
                                     </div>
-                                    <div class="col-3"></div>
+                                    <div class="col-6 p-0">
+                                        <p class="text-white text-start fs-6 m-0 my-1">Robert Kwon</p>
+                                    </div>
+                                    <div class="col-2 p-0">
+                                        <img src="@/assets/ellipsis.png" width="20px" height="20px" class="">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-12 bg-chat">
-                            <div class="row">
-                                <div class="col-10">
-                                    <div class="my-2 mx-auto">
-                                        <input type="text" class="form-control form-control-sm" id="inputMessage" placeholder=" Escriba mensaje..." v-model="msgDestino"
-                                        v-on:keyup.enter="sendMessage(msgDestino,usuarioDestino.id)">
+                            <div class="col-12 bg-chat size-chat">
+                                <div v-for="(item,i) in mensajes" :key="i">
+                                    <div class="row m-2" v-if="usuarioDestino.id == item.idUsuario">
+                                        <div class="col-3"></div>
+                                        <div class="col-9 p-0 d-flex justify-content-end">
+                                            <div class="bg-send-message py-1 px-2 rounded-3">
+                                                <p class="text-white text-end m-0 fs-7">{{item.mensaje}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row m-2" v-else>
+                                        <div class="col-9 p-0 d-flex">
+                                            <div class="bg-recived-message py-1 px-2 rounded-3">
+                                                <p class="text-white text-start mb-0 w-auto fs-7">{{item.mensaje}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-3"></div>
                                     </div>
                                 </div>
-                                <div class="col-2 py-1 px-0">
-                                    <button class="btn rounded-circle btn-send-message p-0" @click="sendMessage(msgDestino,usuarioDestino.id)">
-                                        <img src="@/assets/SendMessage.svg" width="20px" height="20px" class="">
-                                    </button>
+                            </div>
+                            <div class="col-12 bg-chat">
+                                <div class="row">
+                                    <div class="col-10">
+                                        <div class="my-2 mx-auto">
+                                            <input type="text" class="form-control form-control-sm" id="inputMessage" placeholder=" Escriba mensaje..." v-model="msgDestino"
+                                            v-on:keyup.enter="sendMessage(msgDestino,usuarioDestino.id)">
+                                        </div>
+                                    </div>
+                                    <div class="col-2 py-1 px-0">
+                                        <button class="btn rounded-circle btn-send-message p-0" @click="sendMessage(msgDestino,usuarioDestino.id)">
+                                            <img src="@/assets/SendMessage.svg" width="20px" height="20px" class="">
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -251,6 +289,12 @@ export default {
             const auxh = 'FH EH RF TH SH PH AH';  
             this.consola =text_Binario(auxh) +text_Binario(this.aux)
         }
+    },
+    updated(){
+        let scroll=document.getElementsByClassName("size-chat")[0]
+        scroll.scrollTop=scroll.scrollHeight
+        scroll=document.getElementsByClassName("size-chat")[1]
+        scroll.scrollTop=scroll.scrollHeight
     }
 }
 </script>
@@ -259,7 +303,10 @@ export default {
     background: #111B21 !important;
 }
 .size-chat {
-    min-height: 100px;
+    min-height: 424px;
+    max-height: 425px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 .top-bar-chat {
     background: #085E55 !important;
@@ -276,14 +323,61 @@ export default {
 .btn-send-message {
     width: 35px;
     height: 35px;
-    background: #085E55;
+    background: #085e55;
 }
 .view-onda {
     height: 70px;
-    width: 370px;
+    width: 100%;
 }
 .logo-unprg {
     height: 150px;
     width: auto;
 }
+.phone {
+    border: black 8px solid;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.size-360x640{
+    width: 300px !important;
+    height: 533px !important;
+}
+.fs-7 {
+    font-size: 0.88rem !important;
+}
+
+.size-chat::-webkit-scrollbar {
+    width: 5px;     /* Tamaño del scroll en vertical */
+    height: 5px;    /* Tamaño del scroll en horizontal */
+    /* display: none;  Ocultar scroll */
+}
+/* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+.size-chat::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+.size-chat::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Cambiamos el fondo cuando esté en active */
+.size-chat::-webkit-scrollbar-thumb:active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+/* Ponemos un color de fondo y redondeamos las esquinas del track */
+.size-chat::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+    border-radius: 4px;
+}
+
+/* Cambiamos el fondo cuando esté en active o hover */
+.size-chat::-webkit-scrollbar-track:hover,
+.size-chat::-webkit-scrollbar-track:active {
+  background: rgba(0, 0, 0, 0);
+}
+
+
 </style>
